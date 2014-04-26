@@ -2,9 +2,23 @@ var querystring = require("querystring"),
     fs = require("fs"),
     formidable = require("formidable");
 
+function favicon(response) {
+  console.log("Request handler 'favicon' was called.");
+  fs.readFile("favicon.ico", "binary", function(error, file) {
+    if(error) {
+      response.writeHead(500, {"Content-Type": "text/plain"});
+      response.write(error + "\n");
+      response.end();
+    } else {
+      response.writeHead(200, {"Content-Type": "image/ico"});
+      response.write(file, "binary");
+      response.end();
+    }
+  });
+}
+
 function start(response) {
   console.log("Request handler 'start' was called.");
-
   var body = '<html>'+
     '<head>'+
     '<meta http-equiv="Content-Type" '+
@@ -18,7 +32,6 @@ function start(response) {
     '</form>'+
     '</body>'+
     '</html>';
-
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
     response.end();
@@ -26,12 +39,10 @@ function start(response) {
 
 function upload(response, request) {
   console.log("Request handler 'upload' was called.");
-
   var form = new formidable.IncomingForm();
   console.log("about to parse");
   form.parse(request, function(error, fields, files) {
     console.log("parsing done");
-
     /* Possible error on Windows systems:
        tried to rename to an already existing file */
     fs.rename(files.upload.path, "/tmp/test.png", function(err) {
@@ -65,4 +76,4 @@ function show(response) {
 exports.start = start;
 exports.upload = upload;
 exports.show = show;
-
+exports.favicon = favicon;
