@@ -1,9 +1,16 @@
-var gm = require("gm");
+var Canvas = require('canvas')
+  , canvas = new Canvas(500, 500)
+  , ctx = canvas.getContext('2d');
 
-gm("image.png").format(function(err, value){
-  console.log(value);
-})
+ctx.font = '30px Impact';
+ctx.rotate(.9);
+ctx.fillText("Sierpinski Triangle", 50, 50);
 
-//gm("img.png")
-//  .drawPoint(100, 200)
-//  .write('out.png')
+var te = ctx.measureText('Awesome!');
+ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+ctx.beginPath();
+ctx.lineTo(50, 102);
+ctx.lineTo(50 + te.width, 102);
+ctx.stroke();
+
+console.log('<img src="' + canvas.toDataURL() + '" />');
