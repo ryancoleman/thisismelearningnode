@@ -1,3 +1,6 @@
+function draw(response, request) {
+}
+
 var Canvas = require('canvas')
   , canvas = new Canvas(500, 500)
   , ctx = canvas.getContext('2d');
@@ -14,3 +17,5 @@ ctx.lineTo(50 + te.width, 102);
 ctx.stroke();
 
 console.log('<img src="' + canvas.toDataURL() + '" />');
+
+exports.draw = draw;
