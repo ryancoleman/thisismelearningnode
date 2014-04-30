@@ -3,7 +3,6 @@ var querystring = require("querystring"),
     formidable = require("formidable");
 
 function favicon(response) {
-  console.log("Request handler 'favicon' was called.");
   fs.readFile("favicon.ico", "binary", function(error, file) {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});

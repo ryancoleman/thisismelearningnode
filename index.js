@@ -9,6 +9,6 @@ handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
 handle["/show"] = requestHandlers.show;
 handle["/favicon.ico"] = requestHandlers.favicon;
-handle["/sierpinski.html"] = sierpinski.draw;
+handle["/sierpinski"] = sierpinski.draw;
 
 server.start(router.route, handle);
