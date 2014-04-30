@@ -15,16 +15,23 @@ function sierpinski(numPoints) {
     , ctx = canvas.getContext('2d');
 
   ctx.font = '30px Impact';
-  ctx.fillText("Sierpinski Triangle", 50, 50);
-
-  var te = ctx.measureText('Sierpinski Triangle');
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillText("Sierpinski Triangle " + numPoints, 50, 50);
+  destinations = [[250, 1], [1, 499], [499, 499]];
+  curPoint = [Math.floor(Math.random()*500), Math.floor(Math.random()*500)];
+  console.log(curPoint);
+  ctx.strokeStyle = 'rgba(0, 1, 1, 1)';
   ctx.beginPath();
-  ctx.lineTo(50, 102);
-  ctx.lineTo(50 + te.width, 102);
+  ctx.rect(curPoint[0], curPoint[1], 1, 1);
+  for (count = numPoints; count >= 0; count--) {
+    curDestination = destinations[Math.floor(Math.random() * 3)];
+    curPoint[0] = (curPoint[0] + curDestination[0]) / 2.0;
+    curPoint[1] = (curPoint[1] + curDestination[1]) / 2.0;
+    ctx.rect(curPoint[0], curPoint[1], 1, 1);
+  }
   ctx.stroke();
-  return canvas.toDataURL()
 
+
+  return canvas.toDataURL()
   /* console.log('<img src="' + canvas.toDataURL() + '" />'); */
 }  
 
