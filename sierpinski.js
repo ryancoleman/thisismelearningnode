@@ -10,11 +10,11 @@ function draw(response, request) {
 }
 
 function sierpinski(numPoints) {
+  timeStart = new Date().getTime();
   var Canvas = require('canvas')
     , canvas = new Canvas(500, 600)
     , ctx = canvas.getContext('2d');
-  ctx.font = '30px Impact';
-  ctx.fillText("Sierpinski Triangle " + numPoints, 50, 550);
+  ctx.font = '28px Impact';
   if (numPoints > 100000) {
     numPoints = 100000; /* about 100000, all points are done, so cheat */
   }
@@ -30,6 +30,9 @@ function sierpinski(numPoints) {
     ctx.rect(curPoint[0], curPoint[1], 1, 1);
   }
   ctx.stroke();
+  timeEnd = new Date().getTime();
+  timed = new String(timeEnd - timeStart);
+  ctx.fillText("Sierpinski Triangle " + numPoints + " points " + timed + " ms", 10, 550);
   return canvas.toDataURL()
   /* console.log('<img src="' + canvas.toDataURL() + '" />'); */
 }  
