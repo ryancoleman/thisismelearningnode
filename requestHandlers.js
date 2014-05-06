@@ -29,6 +29,7 @@ function start(response) {
     '<input type="file" name="upload" multiple="multiple">'+
     '<input type="submit" value="Upload file" />'+
     '</form>'+
+    'Or for more fun, go here:<a href="sierpinski?1000">sierpinski</a>'+
     '</body>'+
     '</html>';
     response.writeHead(200, {"Content-Type": "text/html"});
